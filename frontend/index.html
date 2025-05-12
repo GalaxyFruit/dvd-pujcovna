@@ -10,17 +10,21 @@
     <div class="container">
         <h1>DVD Půjčovna</h1>
 
+        <div class="login-box">
+            <input type="text" id="loginJmeno" placeholder="Zadej jméno">
+            <button onclick="prihlasit()">Přihlásit</button>
+        </div>
+
+
         <div id="produkty" class="movie-list"></div>
 
         <br>
-
-                <div class="add-box">
+        <div class="add-box" style="display: none;">
             <h2>Přidat film (admin)</h2>
             <input type="text" id="nazev" placeholder="Název">
             <input type="text" id="popis" placeholder="Popis">
             <button onclick="pridatProdukt()">Přidat</button>
         </div>
-
     </div>
     <script src="script.js"></script>
 </body>

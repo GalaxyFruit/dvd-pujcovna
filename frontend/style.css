@@ -85,7 +85,7 @@ button:hover {
 
 .movie-item {
   background-color: #2a2a2a;
-  border: 1px solid #444;
+  border: 1px solid #444444;
   border-radius: 8px;
   padding: 20px;
   display: flex;
@@ -144,3 +144,68 @@ button:hover {
     align-self: flex-end;
   }
 }
+
+.add-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+.movie-item {
+    background-color: #444444;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(107, 107, 107, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background-color: #c62828;
+    color: #444444;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: #b71c1c;
+}
+
+.login-box {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+}
+
+.login-box input {
+  flex: 1;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.login-box button {
+  flex-shrink: 0;
+  padding: 12px 20px;
+}
+
+
+@media (max-width: 600px) {
+  .login-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
