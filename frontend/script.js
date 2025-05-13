@@ -9,10 +9,20 @@ async function prihlasit() {
         body: JSON.stringify({ jmeno })
     });
 
+    if (res.status === 404) {
+        alert('Uživatel neexistuje.');
+        return;
+    }
+
+    if (!res.ok) {
+        alert('Nastala chyba při přihlašování.');
+        return;
+    }
+
     uzivatel = await res.json();
 
     if (uzivatel.role_id === 1) {
-        document.querySelector('.add-box').style.display = 'block'; // zobrazit admin panel
+        document.querySelector('.add-box').style.display = 'block';
     }
 
     nactiProdukty();
@@ -46,12 +56,13 @@ async function nactiProdukty() {
             html += `</div>`;
             div.innerHTML += html;
         }
-
-        if (uzivatel.role_id !== 1) {
-            document.querySelector('.add-box').style.display = 'none';
-        } else {
-            document.querySelector('.add-box').style.display = 'block';
-        }
+        if(uzivatel) {
+            if (uzivatel.role_id !== 1) {
+                document.querySelector('.add-box').style.display = 'none';
+            } else {
+                document.querySelector('.add-box').style.display = 'block';
+            }    
+        }  
 
     } catch (error) {
         console.error("Chyba při načítání:", error);
