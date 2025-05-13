@@ -46,6 +46,13 @@ async function nactiProdukty() {
             html += `</div>`;
             div.innerHTML += html;
         }
+
+        if (uzivatel.role_id !== 1) {
+            document.querySelector('.add-box').style.display = 'none';
+        } else {
+            document.querySelector('.add-box').style.display = 'block';
+        }
+
     } catch (error) {
         console.error("Chyba při načítání:", error);
     }
