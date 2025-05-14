@@ -82,8 +82,11 @@ async function pridatProdukt() {
         await fetch('http://localhost:3000/produkty', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nazev, popis, id: uzivatel.id })
+            body: JSON.stringify({ nazev, popis, uzivatel_id: uzivatel.role_id })
         });
+
+        console.log("prvni: " + JSON.stringify({ nazev, popis, uzivatel_id: uzivatel.role_id }));
+
 
         document.getElementById('nazev').value = '';
         document.getElementById('popis').value = '';
@@ -97,11 +100,13 @@ async function smazat(id) {
     if (!confirm("Opravdu chcete smazat tento film?")) return;
 
     try {
-        await fetch(`http://localhost:3000/produkty/${id}`, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: uzivatel.id }) // přidáno ID pro kontrolu admina
-        });
+    await fetch('http://localhost:3000/produkty', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nazev, popis, uzivatel_id: uzivatel.id })
+    });
+
+
         nactiProdukty();
     } catch (error) {
         console.error("Chyba při mazání:", error);

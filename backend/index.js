@@ -25,6 +25,7 @@ app.post('/produkty', overAdmina, async (req, res) => {
   res.sendStatus(201);
 });
 
+
 // Smazat produkt
 app.delete('/produkty/:id', async (req, res) => {
   await pool.query('DELETE FROM produkt WHERE id = $1', [req.params.id]);
@@ -53,8 +54,13 @@ app.post('/login', async (req, res) => {
 });
 
 async function overAdmina(req, res, next) {
-  const { id } = req.body;
-  const result = await pool.query('SELECT role_id FROM uzivatel WHERE id = $1', [id]);
+  const { uzivatel_id } = req.body;
+
+  if (!uzivatel_id) {
+    return res.status(400).json({ error: 'Chybí ID uživatele' });
+  }
+
+  const result = await pool.query('SELECT role_id FROM uzivatel WHERE id = $1', [uzivatel_id]);
   const user = result.rows[0];
 
   if (!user || user.role_id !== 1) {
